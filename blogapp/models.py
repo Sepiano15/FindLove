@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#-*-coding: euc-kr-*-
 #model에서 데이터베이스를 설계할 수 있다.
 from django.db import models
 from django.contrib.auth.models import User #장고에서 기본적으로 제공하는 User모델

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#-*-coding: euc-kr-*-
 from django.shortcuts import render, redirect, get_object_or_404 #render : 데이터를 받아온 뒤 html로 데이터를 보내기 위한 함수
 from .forms import CreateBlog, BlogCommentForm #forms의 CreateBlog 클래스를 import하여 form을 불러온다.
 from .models import Blog, Comment
