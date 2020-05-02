@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#-*-coding: euc-kr-*-
 """
 Django settings for FindLove project.
 

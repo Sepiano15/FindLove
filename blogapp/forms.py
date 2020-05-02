@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#-*-coding: euc-kr-*-
 from django import forms #장고에서 지원하는 forms를 import
 from .models import Blog,Comment #Blog model 가져오기.
 from ckeditor_uploader.widgets import CKEditorUploadingWidget #글쓰는 부분(body)을 꾸미기 위해 import한다.

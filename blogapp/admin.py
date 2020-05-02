@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#-*-coding: euc-kr-*-
 from django.contrib import admin
 from .models import Blog #Blog모델을 가져온다. 모델 작성 후 할 것.
 from .models import Comment
