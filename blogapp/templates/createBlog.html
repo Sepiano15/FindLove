@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<div class="container">
+    <h1>글쓰기</h1>
+    <hr>
+    <br><br>
+    <form method="POST" enctype="multipart/form-data"> <!--enctype으로 이미지 파일을 묶어서 전송한다.-->
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-dark" value="저장"/>
+    </form>
+</div>
+
+{% endblock %}

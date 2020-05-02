@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <br>
+
+    {% for blog in blogs %} <!--넘겨받은 blogs객체를 하나씩 추출한다.-->
+        <main role="main" class="container">
+            <div class="jumbotron">
+                <h1>제목 : {{ blog.title }}</h1>
+                <br>
+                <h4>작성일 : {{ blog.pub_date }}</h4>
+                <br>
+                <h4>작성자 : {{ blog.author }}</h4>
+                <!--safe는 원치않는 태그가 섞여나오는 것을 막는다.
+                <br>
+                <p class="lead">{{ blog.body | safe }}</p>
+                <br>
+                -->
+                <a class="btn btn-lg btn-primary"
+                   href="{% url 'detail' blog.id %}"
+                   role="button">상세페이지 &raquo;</a>
+            </div>
+        </main>
+    {% endfor %}
+
+{% endblock %}
