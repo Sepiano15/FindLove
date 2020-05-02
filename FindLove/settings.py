@@ -87,7 +87,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -96,6 +95,16 @@ DATABASES = {
 	    'PASSWORD': '1234',
 	    'HOST': '127.0.0.1',
 	    'POST': '3306',
+    }
+}
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Noriaki$FindLove',
+        'USER': 'Noriaki',
+        'PASSWORD': 'wp2vmffjtm+',
+        'HOST': 'Noriaki.mysql.pythonanywhere-services.com',
     }
 }
 # Password validation
