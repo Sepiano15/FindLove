@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-CKEDITOR_UPLOAD_PATH = "uploads/" #ckeditor의 업로드 경로다.
+CKEDITOR_UPLOAD_PATH = "uploads/" #upload path of ckeditor
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
