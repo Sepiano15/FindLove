@@ -101,7 +101,7 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Noriaki$FindLove',
+        'NAME': 'Noriaki$findlove',
         'USER': 'Noriaki',
         'PASSWORD': 'wp2vmffjtm+',
         'HOST': 'Noriaki.mysql.pythonanywhere-services.com',
