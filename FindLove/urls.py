@@ -28,6 +28,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',blogapp.views.index, name='index'),
+    path('login/',blogapp.views.login, name='login'),
+    path('logout/',blogapp.views.logout, name='logout'),
+    path('modify_info/',blogapp.views.modify_info, name='modify_info'),
+    path('signin/',blogapp.views.signin, name='signin'),
+    path('write_profile/',blogapp.views.write_profile, name='write_profile'),
+    path('show_profile/',blogapp.views.show_profile, name='show_profile'),
     path('blogMain/',blogapp.views.blogMain, name='blogMain'), #blogMain의 url을 view를 만든 뒤 추가하는 구간.
     path('blogMain/createBlog',blogapp.views.createBlog, name='createBlog'),
     path('ckeditor/', include('ckeditor_uploader.urls')), #ckeditor_uploader가 url을 참조할 수 있도록 한다.

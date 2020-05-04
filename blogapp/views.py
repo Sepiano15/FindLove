@@ -8,6 +8,24 @@ import json #메시지를 보내기 위해 data리스트를 json의 형태로 �
 def index(request):
     return render(request,'index.html')
 
+def login(request):
+    return render(request,'Login.html')
+
+def logout(request):
+    return render(request,'Logout.html')
+
+def show_profile(request):
+    return render(request,'Show_Profile.html')
+
+def modify_info(request):
+    return render(request,'Modify_Info.html')
+
+def signin(request):
+    return render(request,'Signin.html')
+
+def write_profile(request):
+    return render(request,'Write_profile.html')
+
 def createBlog(request):
 
     if request.method == 'POST': #데이터가 POST방식으로 넘어오면
