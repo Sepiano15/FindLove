@@ -26,6 +26,12 @@ def signin(request):
 def write_profile(request):
     return render(request,'Write_profile.html')
 
+def heartlist(request):
+    return render(request,'Heartlist.html')
+
+def success(request):
+    return render(request,'Success.html')
+
 def createBlog(request):
 
     if request.method == 'POST': #데이터가 POST방식으로 넘어오면
@@ -48,15 +54,19 @@ def blogMain(request):
 
     return render(request, 'blogMain.html', {'blogs': blogs}) #blogMain에 blogs객체를 넘겨준다.
 
-def detail(request, blog_id):
-    blog_detail = get_object_or_404(Blog, pk=blog_id) #pk는 DB의 주키이다.
-    comments = Comment.objects.filter(blog_id=blog_id) #SQL의 SELECT WHERE조건문이다. 모델클래스.objects.filter와 같이 사용.
-
+def detail(request, document_id):
+    document = get_object_or_404(Blog, pk=document_id) #pk는 DB의 주키이다.
+    comments = Comment.objects.filter(document_id=document_id) #SQL의 SELECT WHERE조건문이다. 모델클래스.objects.filter와 같이 사용.
 
     if request.method == 'POST': #댓글을 작성하고 전송할경우
         comment_form = BlogCommentForm(request.POST) #작성한 댓글내용을 담을 객체
+        comment_form.instance.author_id = request.user.id
+        comment_form.instance.document_id = document_id
 
         if comment_form.is_valid():
+            comment = comment_form.save()
+
+            '''kakao
             content = comment_form.cleaned_data['comment_textfield'] #실제 댓글 폼에 입력된 데이터 comment_textfield에 해당하는 걸 받아온다.
 
             print(content)
@@ -77,19 +87,32 @@ def detail(request, blog_id):
             request.session['content'] = content
 
             return redirect(login_request_uri)
+            '''
         else:
             return redirect('blogMain')
 
-    else: #댓글작성이 아니므로 블로그 상세내용만 보여줌
         comment_form = BlogCommentForm()
-
+        comments = document_id.comments.all()
         context = {
-            'blog_detail': blog_detail,
+            'blog_detail': document,
             'comments': comments,
             'comment_form': comment_form
         }
 
         return render(request, 'detail.html', context)
+
+
+    else: #댓글작성이 아니므로 블로그 상세내용만 보여줌
+        comment_form = BlogCommentForm()
+
+        context = {
+            'blog_detail': document,
+            'comments': comments,
+            'comment_form': comment_form
+        }
+
+        return render(request, 'detail.html', context)
+
 
 def oauth(request):
     #code를 가져온다.

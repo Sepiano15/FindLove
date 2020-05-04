@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Blog Post - Start Bootstrap Template</title>
+  <title>500CC 게시판</title>
 
   <!-- Bootstrap core CSS -->
 <!--<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
@@ -32,18 +32,18 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="{%url 'blogMain' %}">소개 게시판
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+              <a class="nav-link" href="{% url 'show_profile' %}">프로필 보기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="{% url 'createBlog' %}">글쓰기</a>
           </li>
         </ul>
       </div>
@@ -64,13 +64,8 @@
         <!-- Author -->
         <p class="lead">
           by
-          {{blog_detail.author}}
+          {{blog_detail.pub_date}} {{blog_detail.author}}
         </p>
-
-        <hr>
-
-        <!-- Date/Time -->
-        <p>{{blog_detail.pub_date}}</p>
 
         <hr>
 
@@ -84,9 +79,9 @@
 
         <hr>
 
-        <!-- Comments Form -->
+        <!-- Comments Form
         <div class="card my-4">
-            <h5 class="card-header">Leave a Comment:</h5>
+            <h5 class="card-header">댓글 남기기</h5>
             <div class="card-body">
                 <form method="POST">
                     {% csrf_token %}
@@ -95,51 +90,28 @@
                 </form>
             </div>
         </div>
-
-        {% for comment in comments %}
-
-        <!-- Single Comment -->
-        <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-                <h5 class="mt-0">{{ comment.comment_user }}</h5>
-                <h5 class="mt-0">{{ comment.comment_date }}</h5>
-                <h5 class="mt-0">{{ comment.comment_thumbnail_url }}</h5>
-                <h5 class="mt-0">{{ comment.comment_textfield }}</h5>
-            </div>
-        </div>
-
-        {% endfor %}
-
-        <!-- Comment with nested comments -->
+-->
+        <!-- Comment with nested comments-->
         <div class="media mb-4">
           <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
           <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            <h5 class="mt-0">댓글기능은</h5>
+            나중에 차근차근 넣어야 할 듯. 생각보다 어렵다
 
             <div class="media mt-4">
               <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
               <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                <h5 class="mt-0">이건 대댓글</h5>
+                옆에다가 하트날리기 버튼 있으면 좋을 듯
               </div>
             </div>
 
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
 
           </div>
         </div>
 
       </div>
-
-      <!-- Sidebar Widgets Column -->
+      <!-- Sidebar Widgets Column-->
       <div class="col-md-4">
 
         <!-- Search Widget -->

@@ -20,10 +20,14 @@ class CreateBlog(forms.ModelForm):
 #템플릿 만들면 view에 함수 작성하고 urls.py에 url등록하기.
 #그 후 뷰에다가 forms를 import하기.
 class BlogCommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
+        class Meta:
+            model = Comment
+            fields = ['text']
 
-        fields = ['comment_textfield']
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['text'].label = "댓글"
+
         widgets = {
-            'comment_textfield': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'cols': 40})
+            'text': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'cols': 40})
         }

@@ -34,10 +34,12 @@ urlpatterns = [
     path('signin/',blogapp.views.signin, name='signin'),
     path('write_profile/',blogapp.views.write_profile, name='write_profile'),
     path('show_profile/',blogapp.views.show_profile, name='show_profile'),
+    path('heartlist/',blogapp.views.heartlist, name='heartlist'),
+    path('success/',blogapp.views.success, name='success'),
     path('blogMain/',blogapp.views.blogMain, name='blogMain'), #blogMain의 url을 view를 만든 뒤 추가하는 구간.
     path('blogMain/createBlog',blogapp.views.createBlog, name='createBlog'),
     path('ckeditor/', include('ckeditor_uploader.urls')), #ckeditor_uploader가 url을 참조할 수 있도록 한다.
-    path('blogMain/detail/<int:blog_id>/', blogapp.views.detail, name='detail'),
+    path('blogMain/detail/<int:document_id>/', blogapp.views.detail, name='detail'),
     path('oauth/', blogapp.views.oauth, name='oauth'),
 ]
 

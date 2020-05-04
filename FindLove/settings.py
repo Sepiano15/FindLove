@@ -27,7 +27,10 @@ SECRET_KEY = '6po63j-(m!kzsfz1(^2dfgve-iou_7p^06o#^!j6_@8hzq3y&w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'Noriaki.pythonanywhere.com',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -91,13 +94,14 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'FindLove',
+        'NAME': 'flove',
 	    'USER': 'root',
 	    'PASSWORD': '1234',
 	    'HOST': '127.0.0.1',
 	    'POST': '3306',
     }
 }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

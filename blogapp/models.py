@@ -16,8 +16,13 @@ class Blog(models.Model): #import된 models.Model을 매개변수로 받는다.
 #admin페이지에서 봐야하므로 admin.py에서 모델을 가져오는 코드 작성.
 
 class Comment(models.Model):
-    blog = models.ForeignKey(Blog, on_delete=True, null=True) #블로그 글마다 있는 주키를 참조하여 몇 번 글에 어떤 댓글을 달지 정한다.
-    comment_date = models.DateTimeField(auto_now_add=True)
-    comment_user = models.TextField(max_length=20)
-    comment_thumbnail_url = models.TextField(max_length=300)
-    comment_textfield = models.TextField()
+    document = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='comments')
+    text = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    like = models.IntegerField(default=0)
+    dislike = models.IntegerField(default=0)
+
+    def __str__(self):
+        return (self.author.username if self.author else "무명")+ "의 댓글"
