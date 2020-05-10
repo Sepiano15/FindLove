@@ -79,11 +79,8 @@ def createBlog(request):
     if request.method == 'POST': #데이터가 POST방식으로 넘어오면
         #request.POST['author']=request.user.get_username()
         request.POST = request.POST.copy()
-        print(author_id)
         #request.POST['author']=author_id
         form = CreateBlog(request.POST) #CreateBlog()폼에 값을 전달한 상태로 form 객체를 만든다.
-        print("==========================")
-        print(form)
         #print(form)
         #print(request.user.get_username())
         if form.is_valid(): #데이터들이 올바른 형식이라면
