@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>회원가입</h2>
+<form method="post" action="">
+    {% csrf_token %}
+    <p>아이디 : {{ form.username }}
+    <input type="submit" name="id_configure" value="중복확인" />
+    </p>
+    <p>비밀번호 : {{ form.password }}</p>
+    <input type="submit" name="Signup" value="회원가입" />
+</form>
+{% for message in messages %}
+
+             <div class="alert alert-success">
+                 <a class="close" href="#" data-dismiss="alert">×</a>
+
+                 {{ message }}
+
+             </div>
+     {% endfor %}
+{% endblock %}

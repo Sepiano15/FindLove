@@ -15,17 +15,26 @@
       <li class="nav-item active">
         <a class="nav-link" href="{%url 'blogMain' %}">소개 게시판<span class="sr-only">(current)</span></a>
       </li>
+      {% if user.is_active %}
       <li class="nav-item">
           <a class="nav-link" href="{% url 'createBlog' %}">글쓰기</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">로그인</a>
+        <a class="nav-link" href="{%url 'login' %}">{{user.username}}</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
+        <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">글쓰기</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="{% url 'signin' %}">회원가입</a>
+        <a class="nav-link" href="{%url 'login' %}">로그인</a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'signup' %}">회원가입</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="{% url 'show_profile' %}">프로필 보기</a>

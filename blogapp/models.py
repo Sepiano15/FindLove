@@ -9,7 +9,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class Blog(models.Model): #import된 models.Model을 매개변수로 받는다.
     title = models.CharField(max_length=100)
     pub_date = models.DateTimeField(auto_now_add=True) #현재 시간에 맞추어 입력됨.
-    author = models.ForeignKey(User, on_delete=True, null=True, default=1) #User에 있는 계정정보를 쓰겠다.
+    author = models.ForeignKey(User, related_name='articles', on_delete=models.CASCADE, null=True, default=1) #User에 있는 계정정보를 쓰겠다.
     body = RichTextUploadingField() #ckeditor_uploader를 적용
 
 #모델 작성 후 python manage.py makemigrations와 migrate를 할 것.

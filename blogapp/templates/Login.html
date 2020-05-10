@@ -1,5 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>로그인 페이지입니다.</h1>
+<!-- 로그인 되어있는 경우 -->
+  {% if user.is_active %}
+  <h2> Welcome, {{user.username}} </h2>
+  <a href="{% url 'logout' %}">로그아웃</a>
+
+  <!-- 로그인 되어있지 않은 경우 -->
+  {% else %}
+    <!-- 로그인 폼 -->
+    <form method="POST" action="{% url 'login' %}" class="sign-in-form">
+      {% csrf_token %}
+      <h2 class="sub-title"> 로그인 </h2>
+      {{form.as_p}}
+      <input type="submit" class="save btn btn-success" value="로그인">
+      <a href="{% url 'blogMain' %}">
+        <button type="button" class="btn btn-danger">취소</button>
+      </a>
+      <input type="hidden" name="next" value="">
+    </form>
+    {% endif %}
+    {% for message in messages %}
+
+                 <div class="alert alert-success">
+                     <a class="close" href="#" data-dismiss="alert">×</a>
+
+                     {{ message }}
+
+                 </div>
+         {% endfor %}
+
 {% endblock %}

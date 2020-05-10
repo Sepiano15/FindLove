@@ -26,12 +26,13 @@ from django.conf.urls.static import static
 #2 : 위에 import blogapp.view를 해서 가능함. view에 있는 index함수를 쓰겠다는 말.
 #3 : 함수를 적용시키고 이름을 정하면 나중에 html파일에서 이 값으로 url을 불러올 수 있다.
 urlpatterns = [
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
+    path('signup/',blogapp.views.signup, name='signup'),
     path('',blogapp.views.index, name='index'),
     path('login/',blogapp.views.login, name='login'),
     path('logout/',blogapp.views.logout, name='logout'),
     path('modify_info/',blogapp.views.modify_info, name='modify_info'),
-    path('signin/',blogapp.views.signin, name='signin'),
     path('write_profile/',blogapp.views.write_profile, name='write_profile'),
     path('show_profile/',blogapp.views.show_profile, name='show_profile'),
     path('heartlist/',blogapp.views.heartlist, name='heartlist'),

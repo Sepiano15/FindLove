@@ -1,6 +1,8 @@
 from django import forms #장고에서 지원하는 forms를 import
 from .models import Blog,Comment #Blog model 가져오기.
 from ckeditor_uploader.widgets import CKEditorUploadingWidget #글쓰는 부분(body)을 꾸미기 위해 import한다.
+from django.contrib.auth.models import User
+from django.contrib import auth
 
 class CreateBlog(forms.ModelForm):
     class Meta: #Meta는 내부클래스로서 기본 필드의 값을 정의할 때 사용한다.
@@ -31,3 +33,22 @@ class BlogCommentForm(forms.ModelForm):
         widgets = {
             'text': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'cols': 40})
         }
+
+class UserForm(forms.ModelForm):
+    #verify_password = forms.CharField(max_length=12,label = '비밀번호 확인', widget = forms.PasswordInput) #field 만들기
+    password = forms.CharField(max_length=12,label = '비밀번호',widget=forms.PasswordInput,required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'password'] # 'verify_password'
+
+
+    def clean_verify_password(self):
+        password2 = self.cleaned_data.get('verify_password')
+
+class LoginForm(forms.ModelForm):
+    password = forms.CharField(max_length=12,widget=forms.PasswordInput,required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'password'] # 로그인 시에는 유저이름과 비밀번호만 입력 받는다.

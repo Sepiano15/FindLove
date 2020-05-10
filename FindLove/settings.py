@@ -83,7 +83,6 @@ WSGI_APPLICATION = 'FindLove.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -101,7 +100,6 @@ DATABASES = {
 	    'POST': '3306',
     }
 }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -161,3 +159,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static') #흩어져있는 static file을 �
 #ckeditor_uploader를 사용하기 위해 경로를 추가한다.
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Auth settings
+LOGIN_REDIRECT_URL = '/'

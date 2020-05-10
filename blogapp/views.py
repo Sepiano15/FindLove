@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404 #render : 데이터를 받아온 뒤 html로 데이터를 보내기 위한 함수
-from .forms import CreateBlog, BlogCommentForm #forms의 CreateBlog 클래스를 import하여 form을 불러온다.
+from .forms import CreateBlog, BlogCommentForm, UserForm, LoginForm #forms의 CreateBlog 클래스를 import하여 form을 불러온다.
 from .models import Blog, Comment
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
+from django.template import RequestContext
+from django.contrib import auth
+from django.contrib import messages #에러메시지
 import requests #json 파싱을 위해 import. pip로 따로 설치해주어야함.
 import json #메시지를 보내기 위해 data리스트를 json의 형태로 변환.
 
@@ -9,10 +14,24 @@ def index(request):
     return render(request,'index.html')
 
 def login(request):
-    return render(request,'Login.html')
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username = username, password = password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('blogMain')
+        else:
+            messages.error(request,'사용자 이름과 비밀번호가 일치하지 않습니다.')
+            return redirect('login')
+    else:
+        form = LoginForm()
+        return render(request, 'login.html', {'form': form})
 
 def logout(request):
-    return render(request,'Logout.html')
+    auth.logout(request)
+    return redirect('blogMain')
 
 def show_profile(request):
     return render(request,'Show_Profile.html')
@@ -20,8 +39,32 @@ def show_profile(request):
 def modify_info(request):
     return render(request,'Modify_Info.html')
 
-def signin(request):
-    return render(request,'Signin.html')
+
+def signup(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if 'id_configure' in request.POST:
+            if len(form.errors)>=1: #id오류가 나면
+                messages.error(request,'중복된 아이디입니다. 아이디를 새로 입력해주세요.')
+                return redirect('signup')
+            else:
+                messages.error(request,'사용할 수 있는 아이디입니다.')
+                return redirect('signup')
+
+        elif 'Signup' in request.POST:
+            if form.is_valid():
+                #if request.POST["password"] == request.POST["verify_password"]: #비밀번호 재확인
+                new_user = User.objects.create_user(**form.cleaned_data)
+                auth.login(request, new_user)
+                return redirect('blogMain')
+            else: #form.is_valid가 안된다는건 아이디에 오류가 있다는 뜻이다. 
+                messages.error(request,'아이디 중복확인을 해주세요.')
+                return redirect('signup')
+
+        return redirect('signup')
+    else:
+        form = UserForm()
+        return render(request, 'signup.html', {'form': form})
 
 def write_profile(request):
     return render(request,'Write_profile.html')
@@ -33,12 +76,21 @@ def success(request):
     return render(request,'Success.html')
 
 def createBlog(request):
-
     if request.method == 'POST': #데이터가 POST방식으로 넘어오면
+        #request.POST['author']=request.user.get_username()
+        request.POST = request.POST.copy()
+        print(author_id)
+        #request.POST['author']=author_id
         form = CreateBlog(request.POST) #CreateBlog()폼에 값을 전달한 상태로 form 객체를 만든다.
-
+        print("==========================")
+        print(form)
+        #print(form)
+        #print(request.user.get_username())
         if form.is_valid(): #데이터들이 올바른 형식이라면
-            form.save() #데이터베이스에 저장한다.
+            form.save()#데이터베이스에 저장한다.
+            #memo = form.save(commit = False)
+            #memo.author=request.user.get_username()
+            #memo.generate()
             return redirect('blogMain') #그 후 블로그 메인으로 간다.
         else:
             return redirect('index') #redirect는 단순히 특정 url이나 문서로 이동할 때 쓴다.
