@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'FindLove.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -101,7 +101,7 @@ DATABASES = {
 	    'POST': '3306',
     }
 }
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
