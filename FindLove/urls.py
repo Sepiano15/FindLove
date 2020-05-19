@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-import blogapp.views
+import FL_main.views
 #미디어 추가를 위한 import
 from django.conf.urls import include
 from django.conf import settings
@@ -26,23 +26,30 @@ from django.conf.urls.static import static
 #2 : 위에 import blogapp.view를 해서 가능함. view에 있는 index함수를 쓰겠다는 말.
 #3 : 함수를 적용시키고 이름을 정하면 나중에 html파일에서 이 값으로 url을 불러올 수 있다.
 urlpatterns = [
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('admin/', admin.site.urls),
-    path('signup/',blogapp.views.signup, name='signup'),
-    path('',blogapp.views.index, name='index'),
-    path('login/',blogapp.views.login, name='login'),
-    path('logout/',blogapp.views.logout, name='logout'),
-    path('modify_info/',blogapp.views.modify_info, name='modify_info'),
-    path('write_profile/',blogapp.views.write_profile, name='write_profile'),
-    path('show_profile/',blogapp.views.show_profile, name='show_profile'),
-    path('heartlist/',blogapp.views.heartlist, name='heartlist'),
-    path('success/',blogapp.views.success, name='success'),
-    path('blogMain/',blogapp.views.blogMain, name='blogMain'), #blogMain의 url을 view를 만든 뒤 추가하는 구간.
-    path('blogMain/createBlog',blogapp.views.createBlog, name='createBlog'),
-    path('ckeditor/', include('ckeditor_uploader.urls')), #ckeditor_uploader가 url을 참조할 수 있도록 한다.
-    path('blogMain/detail/<int:document_id>/', blogapp.views.detail, name='detail'),
-    path('oauth/', blogapp.views.oauth, name='oauth'),
+    path('', FL_main.views.index, name='index'),
+    path('logout/',FL_main.views.logout, name='logout'),
+    path('signup/',FL_main.views.signup, name='signup'),
+    path('about/',FL_main.views.about, name='about'),
 ]
 
 #미디어 추가를 위한 경로참조
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+'''
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('admin/', admin.site.urls),
+    path('signup/',views.signup, name='signup'),
+    path('',views.index, name='index'),
+    path('login/',views.login, name='login'),
+    path('logout/',views.logout, name='logout'),
+    path('modify_info/',views.modify_info, name='modify_info'),
+    path('write_profile/',views.write_profile, name='write_profile'),
+    path('show_profile/',views.show_profile, name='show_profile'),
+    path('heartlist/',views.heartlist, name='heartlist'),
+    path('success/',views.success, name='success'),
+    path('blogMain/',views.blogMain, name='blogMain'), #blogMain의 url을 view를 만든 뒤 추가하는 구간.
+    path('blogMain/createBlog',views.createBlog, name='createBlog'),
+    path('ckeditor/', include('ckeditor_uploader.urls')), #ckeditor_uploader가 url을 참조할 수 있도록 한다.
+    path('blogMain/detail/<int:document_id>/', views.detail, name='detail'),
+    path('oauth/', views.oauth, name='oauth'),
+'''

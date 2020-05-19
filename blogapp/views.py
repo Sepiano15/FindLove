@@ -57,7 +57,7 @@ def signup(request):
                 new_user = User.objects.create_user(**form.cleaned_data)
                 auth.login(request, new_user)
                 return redirect('blogMain')
-            else: #form.is_valid가 안된다는건 아이디에 오류가 있다는 뜻이다. 
+            else: #form.is_valid가 안된다는건 아이디에 오류가 있다는 뜻이다.
                 messages.error(request,'아이디 중복확인을 해주세요.')
                 return redirect('signup')
 
@@ -79,11 +79,8 @@ def createBlog(request):
     if request.method == 'POST': #데이터가 POST방식으로 넘어오면
         #request.POST['author']=request.user.get_username()
         request.POST = request.POST.copy()
-        print(author_id)
         #request.POST['author']=author_id
         form = CreateBlog(request.POST) #CreateBlog()폼에 값을 전달한 상태로 form 객체를 만든다.
-        print("==========================")
-        print(form)
         #print(form)
         #print(request.user.get_username())
         if form.is_valid(): #데이터들이 올바른 형식이라면

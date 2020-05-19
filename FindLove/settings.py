@@ -83,6 +83,7 @@ WSGI_APPLICATION = 'FindLove.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -100,6 +101,7 @@ DATABASES = {
 	    'POST': '3306',
     }
 }
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -150,7 +152,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'blogapp', 'static') #blogapp안의 static에 파일이 있다.
+    os.path.join(BASE_DIR, 'blogapp', 'static'), #blogapp안의 static에 파일이 있다.
+    os.path.join(BASE_DIR, 'FL_main', 'static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static') #흩어져있는 static file을 모을 것이다.
