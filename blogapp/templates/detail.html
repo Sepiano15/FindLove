@@ -79,31 +79,7 @@
 
         <hr>
 
-        <!-- Comments Form
-        <div class="card my-4">
-            <h5 class="card-header">댓글 남기기</h5>
-            <div class="card-body">
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="form-group">{{ comment_form }}</div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-        </div>
 
-        {% for comment in comments %}
-
-        <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-                <h5 class="mt-0">{{ comment.author }}</h5>
-                <h5 class="mt-0">{{ comment.created }}</h5>
-                <h5 class="mt-0">{{ comment.text }}</h5>
-            </div>
-        </div>
-
-        {% endfor %}
--->
         <!-- Comment with nested comments-->
         <div class="media mb-4">
           <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
