@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content_login %}
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <div class="ftco-blocks-cover-1">
+      <div class="site-section-cover overlay" data-stellar-background-ratio="0.5" style="background-image: url('/static/images/hero_1.jpg')">
+        <div class="container">
+          <div class="row align-items-center ">
+            <div class="col-md-5 mt-5 pt-5">
+                <h1 class="mb-3">회원가입을 합니다.</h1>
+                <p>정보를 올바르게 작성하세요.</p>
+                <p class="mt-5"><a href="{% url 'about' %}" class="btn btn-primary">500CC란?</a></p>
+            </div>
+            <div class="col-md-6 ml-auto">
+              <div class="white-dots">
+              <!--회원가입 폼-->
+                <h2>회원가입</h2>
+                    {% for message in messages %}
+
+                           <div class="alert alert-success">
+                               <a class="close" href="#" data-dismiss="alert">×</a>
+
+                               {{ message }}
+
+                           </div>
+                   {% endfor %}
+
+                <form method="post" action="{% url 'signup' %}">
+                    {% csrf_token %}
+                    <p>이름 : {{ form.name }}</p>
+                    <p>학번 : {{ form.stdnum }}</p>
+                    <p>나이 : {{ form.age }}</p>
+                    <p>취미 : {{ form.hobby }}</p>
+                    <p>키 : {{ form.height }}</p>
+                    <p>체형 : {{ form.weight }}</p>
+                    <input type="submit" name="Signup" value="가입하기" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        $('.pw').focusout(function () {
+            var pwd1 = $("#password_1").val();
+            var pwd2 = $("#password_2").val();
+     
+            if ( pwd1 != '' && pwd2 == '' ) {
+                null;
+            } else if (pwd1 != "" || pwd2 != "") {
+                if (pwd1 == pwd2) {
+                    $("#alert-success").css('display', 'inline-block');
+                    $("#alert-danger").css('display', 'none');
+                } else {
+                    alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
+                    $("#alert-success").css('display', 'none');
+                    $("#alert-danger").css('display', 'inline-block');
+                }
+            }
+        });
+    </script>
+{% endblock %}

@@ -8,9 +8,14 @@
           <div class="row align-items-center ">
             <div class="col-md-5 mt-5 pt-5">
               {% if user.is_active %}
+                {% if user.is_approval %}
                 <h1 class="mb-3">로그인 성공!</h1>
-                <p>안녕하세요, {{user.username}}님.</p>
+                <p>안녕하세요, {{user.name}}님.</p>
                 <p class="mt-5"><a href="{% url 'logout' %}" class="btn btn-primary">로그아웃</a></p>
+                {% else %}                
+                <h3 class="mb-3">사용자 인증이 진행중입니다.</h3>
+                <p class="mt-5"><a href="{% url 'logout' %}" class="btn btn-primary">로그아웃</a></p>
+                {% endif %}
               {% else %}
                 <h1 class="mb-3">먼저 로그인을 하세요.</h1>
                 <p>서비스를 이용하기 위해선 로그인이 필요합니다.</p>

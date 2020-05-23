@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'ckeditor',
     'FL_main',
+    'FL_user',
     'blogapp.apps.BlogappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -83,7 +84,7 @@ WSGI_APPLICATION = 'FindLove.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -94,14 +95,13 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'flove',
+        'NAME': 'Flove',
 	    'USER': 'root',
 	    'PASSWORD': '1234',
 	    'HOST': '127.0.0.1',
 	    'POST': '3306',
     }
 }
-'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

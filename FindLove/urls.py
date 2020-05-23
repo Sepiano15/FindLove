@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import FL_main.views
+import FL_user.views
 #미디어 추가를 위한 import
 from django.conf.urls import include
 from django.conf import settings
@@ -27,9 +28,11 @@ from django.conf.urls.static import static
 #3 : 함수를 적용시키고 이름을 정하면 나중에 html파일에서 이 값으로 url을 불러올 수 있다.
 urlpatterns = [
     path('', FL_main.views.index, name='index'),
+    path('admin/', admin.site.urls),
     path('logout/',FL_main.views.logout, name='logout'),
-    path('signup/',FL_main.views.signup, name='signup'),
+    path('signup/',FL_user.views.signup, name='signup'),
     path('about/',FL_main.views.about, name='about'),
+    path('login_cert/',FL_user.views.login_cert, name='login_cert'),
 ]
 
 #미디어 추가를 위한 경로참조
