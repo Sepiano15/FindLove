@@ -102,6 +102,10 @@ DATABASES = {
 	    'POST': '3306',
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2d79deab81e5cb08216a3525d86da6279d3b8dc2
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
